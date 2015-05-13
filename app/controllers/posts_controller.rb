@@ -10,6 +10,10 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+    #@comment = Comment.new(post:@post)
+    #lo de abajo hace lo mismo de arriba.
+    @comment = @post.comments.build
+
   end
 
   # GET /posts/new

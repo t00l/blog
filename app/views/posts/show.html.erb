@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<h1>POST</h1>
+
 <p>
   <strong>Titulo:</strong>
   <%= @post.titulo %>
@@ -9,6 +11,20 @@
   <strong>Content:</strong>
   <%= @post.content %>
 </p>
+
+<p>
+  <h2>Comentarios</h2>
+
+<%= form_for [@post, @comment] do |f| -%>
+   	<div class="field">
+    		<%= f.label :comment, 'Comentario'  %>
+    		<%= f.text_field :comment %>
+    </div>
+
+		<div class="action">
+		  	<%= f.submit 'Enviar' %>
+		</div>			
+<% end %>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>
