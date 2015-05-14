@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :posts do #recursos anidados
     resources :comments, only:[:create] #conntrolares
   end 
