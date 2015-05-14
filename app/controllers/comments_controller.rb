@@ -6,11 +6,12 @@ class CommentsController < ApplicationController
 		@post = Post.find(params[:post_id])
 		#ahora construimos el comentario 
 		@comment = @post.comments.build(comments_params)
+		@comments = @post.comments.all
 		#ahora vamos a guardar el comentario en la bd
 		if @comment.save
 			redirect_to @post, notice: 'El comentario se guardo con exito' #
 		else
-			redirect_to @post, alert: 'El comentario no se guardo'
+			render 'posts/show'
 		end
 	end
 
