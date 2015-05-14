@@ -14,6 +14,9 @@ class PostsController < ApplicationController
     #lo de abajo hace lo mismo de arriba.
     @comment = @post.comments.build
 
+    #tenemos que mostrar todos los comentarios del post y pasarlos a la vista
+    @comments = @post.comments #muestra el arreglo de todos los comentarios
+
   end
 
   # GET /posts/new
