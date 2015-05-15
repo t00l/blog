@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+	before_action :authenticate_user!
 
 	#metodo que se va a llamar cuando hacemos submitenel form que estaen el show del post
 	def create
@@ -6,6 +7,9 @@ class CommentsController < ApplicationController
 		@post = Post.find(params[:post_id])
 		#ahora construimos el comentario 
 		@comment = @post.comments.build(comments_params)
+
+		@comment.user - current_user#asociamos comentario al id del usuario
+
 		@comments = @post.comments.all
 		#ahora vamos a guardar el comentario en la bd
 		if @comment.save
@@ -16,8 +20,8 @@ class CommentsController < ApplicationController
 	end
 
 	private 
-		#proteccion para injeccion de datos
-	def comments_params #nuestro modelo comment. Lo otro son los campos deo formulario
-		params.require(:comment).permit(:comment)
-	end
+			#proteccion para injeccion de datos
+		def comments_params #nuestro modelo comment. Lo otro son los campos deo formulario
+			params.require(:comment).permit(:comment)
+		end	
 end

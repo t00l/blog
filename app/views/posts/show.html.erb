@@ -3,16 +3,19 @@
 <p>
   <strong>Titulo:</strong>
   <%= @post.titulo %>
+  <small> by <%= @post.user.name %></small>
 </p>
-
 <p>
   <strong>Content:</strong>
-  <%= @post.content %>
+  <%= @post.content %> 
 </p>
 
-<%= render 'comments/form'%>
+<% if user_signed_in? %>
+	<%= render 'comments/form'%>
 
-  <h2>Comentarios (<%= @comments.count %>)</h2>
+<% end %>
+
+<h2>Comentarios (<%= @comments.count %>)</h2>
 
 <% if @comments.any? %>
 	<%= render partial: 'comments/comment', collection: @comments %>
@@ -20,6 +23,8 @@
 	<p>No hay comentarios, se el primero en dejar el tuyo!!!! :D</p>
 <% end %>
 
+<% if  user_signed_in?%>
+	<%= link_to 'Edit', edit_post_path(@post) %> |
+<% end %>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>
