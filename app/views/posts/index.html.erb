@@ -27,6 +27,6 @@
 </table>
 
 <br>
-<% if can? :create, Post  %>
+<% if (user_signed_in?) && (can? :create, Post)  %>
   <%= link_to 'New Post', new_post_path %>  
 <% end %>
