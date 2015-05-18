@@ -11,8 +11,8 @@
 </p>
 
 <% if user_signed_in? %>
+	<h2>Deja Tu Comentario</h2>
 	<%= render 'comments/form'%>
-
 <% end %>
 
 <h2>Comentarios (<%= @comments.count %>)</h2>
@@ -23,8 +23,8 @@
 	<p>No hay comentarios, se el primero en dejar el tuyo!!!! :D</p>
 <% end %>
 
-<% if  user_signed_in?%>
-	<%= link_to 'Edit', edit_post_path(@post) %> |
+<% if  can? :update, @post %>
+	<%= link_to 'Edit', edit_post_path(@post) %>
 <% end %>
 
 <%= link_to 'Back', posts_path %>
