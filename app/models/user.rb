@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
         #before_save :default_role
 
         validates :name, presence: true
+        
 
         has_many :posts, dependent: :destroy 
         has_many :comments, dependent: :destroy 
