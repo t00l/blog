@@ -19,4 +19,10 @@ class User < ActiveRecord::Base
         #def default_role
         #	self.role ||= 0
         #end
+
+       #carrierwave. llama a un metodo que se llama mount uploader, que pasa los 
+       #argumentos avatar y avataruploader. Puede ir con parentesis o no
+       #mount_uploader (:avatar, avataruploader). avatar es el campo.
+       
+       mount_uploader  :avatar, AvatarUploader 
 end
