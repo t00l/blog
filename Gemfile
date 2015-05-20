@@ -10,7 +10,6 @@ gem "fog"
 gem "fog-aws"
 #omniouth para registrarse con face
 gem 'omniauth'
-gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'

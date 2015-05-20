@@ -6,6 +6,10 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # config.secret_key = '909ffb0d2bf29bf324c63887c2036c9bf975df81e0dab27b370a232001617a2b59654b0f192773d83a50f7746126df4a5d27e01f88b0d28017dae049de64af74'
 
+#omniauth para face. Secure image url pasa http a https.
+Devise.setup do |config|
+  config.omniauth :facebook, ENV["FACEBOOK_APP_ID"], ENV["FACEBOOK_APP_SECRET_KEY"], :image_size => 'large', :secure_image_url => true
+end
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
