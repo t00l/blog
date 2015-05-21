@@ -4,12 +4,21 @@
   <strong>Titulo:</strong>
   <%= @post.titulo %>
   <small> by <%= @post.user.name %></small>
-  <small> by<%= @post.user.avatar %></small>
 </p>
 <p>
   <strong>Content:</strong>
   <%= @post.content %> 
 </p>
+<p> Votes <strong><%= @post.votes.count %></strong></p>
+<p> Vote!: 
+
+  <% unless @post.user_votes.include? current_user %>
+      <%= link_to '+1', upvote_post_path(@post) %>
+  <% else %>
+      <%= link_to '-1', upvote_post_path(@post) %>
+  <% end %>
+</p>
+
 
 <% if user_signed_in? %>
 	<h2>Deja Tu Comentario</h2>

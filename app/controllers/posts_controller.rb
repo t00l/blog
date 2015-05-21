@@ -71,6 +71,25 @@ class PostsController < ApplicationController
     end
   end
 
+  #metodo para votar por post.
+  def upvote
+    @post = Post.find(params[:id])
+    @vote = @post.votes.build(user:current_user)
+    #el build pasa el post_id y falta pasar el usuario, que se pone al final como
+    #current user
+
+
+    if @post.user_votes.include? current_user#si eres el usuario que ya voto en el post
+        @post.votes.where(user: current_user).first.delete
+        #borra el upvote
+        redirect_to @post, notice: 'Tu voto se ha eliminado :'
+    elsif @vote.save
+      redirect_to @post, notice: 'Gracias por el voto'
+    else
+      redirect_to @post, alert: 'No se pudo votar'
+    end
+  end
+
   private
 
     # Never trust parameters from the scary internet, only allow the white list through.
