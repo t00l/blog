@@ -3,13 +3,22 @@ Rails.application.routes.draw do
 devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
 
   resources :posts do #recursos anidados
-    resources :comments, only:[:create, :destroy] #conntrolares
-    member do
-      get 'upvote' 
+    resources :comments, only:[:create, :destroy] do#controlare
+        member do
+          get 'upcomment'
+        end
     end
+    member do
+      get 'upvote'
+    end
+    #member do
+     # get 'upcomment'
+    #end
       #no se pone posts por que saber que lo obtiene de ahi, ya que
       #esta dentro del recurso post
+      
   end 
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

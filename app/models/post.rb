@@ -7,5 +7,5 @@ class Post < ActiveRecord::Base
 	belongs_to :user
 	#estas dos uyltimas se relacionan a traves de through
 	has_many :votes
-	has_many :user_votes,through: :votes, source: :user
+	has_many :user_votes, through: :votes, source: :user
 end

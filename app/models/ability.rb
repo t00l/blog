@@ -14,6 +14,7 @@ class Ability
         can [:edit, :delete], [Post, Comment], user_id: user.id   
         #lo ultimo dice que el userid tiene que ser igual al current user
         can :upvote, Post
+        can :upcomment, Comment
     else
         can :read, :all
     end

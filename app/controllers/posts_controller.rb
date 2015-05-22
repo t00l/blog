@@ -79,7 +79,8 @@ class PostsController < ApplicationController
     #current user
 
 
-    if @post.user_votes.include? current_user#si eres el usuario que ya voto en el post
+    if @post.user_votes.include? current_user
+    #si eres el usuario que ya voto en el post
         @post.votes.where(user: current_user).first.delete
         #borra el upvote
         redirect_to @post, notice: 'Tu voto se ha eliminado :'

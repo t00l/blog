@@ -30,6 +30,23 @@ class CommentsController < ApplicationController
 
 	end
 
+	def  upcomment
+
+		@post = Post.find(params[:post_id])
+    	@comment = Comment.find(params[:id])
+    	@votecomment = @comment.votecomments.build(user:current_user)
+
+    	if @comment.user_comments_votes.include? current_user
+      		@comment.votecomments.where(user: current_user).first.delete
+      		redirect_to @post, notice: 'Tu voto se ha eliminado :'
+      	elsif @votecomment.save
+        	redirect_to @post, notice: 'Gracias por el voto'
+      	else
+       		redirect_to @post, alert: 'No se pudo votar'
+    	end
+  	end
+
+
 	private 
 			#proteccion para injeccion de datos
 		def comment_params #nuestro modelo comment. Lo otro son los campos deo formulario

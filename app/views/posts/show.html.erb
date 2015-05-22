@@ -10,7 +10,7 @@
   <%= @post.content %> 
 </p>
 <p> Votes <strong><%= @post.votes.count %></strong></p>
-<p> Vote!: 
+<p> Vote post!: 
 
   <% unless @post.user_votes.include? current_user %>
       <%= link_to '+1', upvote_post_path(@post) %>
@@ -26,6 +26,7 @@
 <% end %>
 
 <h2>Comentarios (<%= @comments.count %>)</h2>
+
 
 <% if @comments.any? %>
 	<%= render partial: 'comments/comment', collection: @comments %>

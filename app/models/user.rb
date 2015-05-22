@@ -15,8 +15,11 @@ class User < ActiveRecord::Base
         #para borrar usuario 
         has_many :identities, dependent: :destroy
         has_many :votes 
+        has_many :votecomments
         #hay dos hasmany posts, hay que hacer un scope y cambiar de posts a post_votes
         has_many :post_votes, through: :votes, source: :post 
+        has_many :comment_votes, through: :votecomments, source: :comment
+
 
         #enum para que guarde el role como 0 o 1	
         enum role: [:guest, :moderator]
