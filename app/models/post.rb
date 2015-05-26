@@ -1,4 +1,7 @@
 class Post < ActiveRecord::Base
+	
+	include PgSearch
+
 	validates :titulo, presence: true
 	validates :content, presence: true
 

@@ -1,9 +1,34 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://localhost:3000">Blog Desafío</a>
+    </div>
 
-<% unless  user_signed_in? %>
-	<%= link_to 'Ingresar', new_user_session_path %>
-	<%= link_to 'Registrar', new_user_registration_path %>
-<%else%>
-	<p><%= link_to current_user.name, edit_user_registration_path %></p>
-	<%= link_to 'Salir', destroy_user_session_path, method: :delete, data: { confirm: 'Seguro que deseas salir?'} %>
-<% end %>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
 
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <% unless  user_signed_in? %>
+			<li><%= link_to 'Ingresar', new_user_session_path %></li>
+			<li><%= link_to 'Registrar', new_user_registration_path %></li>
+		<%else%>
+			<li><%= link_to current_user.name, edit_user_registration_path %></li>
+			<li><%= link_to 'Salir', destroy_user_session_path, method: :delete, data: { confirm: 'Seguro que deseas salir?'} %></li>
+		<% end %>
+      </ul>
+
+  
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>

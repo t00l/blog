@@ -1,41 +1,63 @@
-<h1>POST</h1>
+<div class="container-fluid">
 
-<p>
-  <strong>Titulo:</strong>
-  <%= @post.titulo %>
-  <small> by <%= @post.user.name %></small>
-</p>
-<p>
-  <strong>Content:</strong>
-  <%= @post.content %> 
-</p>
-<p> Votes <strong><%= @post.votes.count %></strong></p>
-<p> Vote post!: 
+  <h1>POST</h1>
 
-  <% unless @post.user_votes.include? current_user %>
-      <%= link_to '+1', upvote_post_path(@post) %>
-  <% else %>
-      <%= link_to '-1', upvote_post_path(@post) %>
-  <% end %>
-</p>
+  <div class="row">
+    <div class="col-md-2">
+        <div class=img-thumbnail>
+          <%= image_tag(@post.user.avatar.thumb.url)%>
+        </div>
+    </div>
+
+    <div class="col-md-10">
+
+      <strong>Titulo:</strong>
+ 
+          <p> 
+            <%= @post.titulo %>
+            <small> <b>by</b> <%= @post.user.name %></small>
+          </p>        
+      
+
+      <strong>Content:</strong>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <p>
+            <%= @post.content %> 
+          </p>        
+        </div>
+      </div>
+        
+        <p> Votes <strong><%= @post.votes.count %></strong></p>
+        <p> Vote post!: 
+
+          <% unless @post.user_votes.include? current_user %>
+              <%= link_to '+1', upvote_post_path(@post) %>
+          <% else %>
+              <%= link_to '-1', upvote_post_path(@post) %>
+          <% end %>
+        </p>
 
 
-<% if user_signed_in? %>
-	<h2>Deja Tu Comentario</h2>
-	<%= render 'comments/form'%>
-<% end %>
+        <% if user_signed_in? %>
+          <h2>Deja Tu Comentario</h2>
+          <%= render 'comments/form'%>
+        <% end %>
 
-<h2>Comentarios (<%= @comments.count %>)</h2>
+        <h2>Comentarios (<%= @comments.count %>)</h2>
 
 
-<% if @comments.any? %>
-	<%= render partial: 'comments/comment', collection: @comments %>
-<% else %>
-	<p>No hay comentarios, se el primero en dejar el tuyo!!!! :D</p>
-<% end %>
+        <% if @comments.any? %>
+          <%= render partial: 'comments/comment', collection: @comments %>
+        <% else %>
+          <p>Publicación sin comentarios</p>
+        <% end %>
 
-<% if  can? :update, @post %>
-	<%= link_to 'Edit', edit_post_path(@post) %>
-<% end %>
+        <% if  can? :update, @post %>
+          <%= link_to 'Edit', edit_post_path(@post) %>
+        <% end %>
+    </div>
+  </div>
 
-<%= link_to 'Back', posts_path %>
+  <%= link_to 'Back', posts_path, class: "btn btn-default" %>
+</div>
