@@ -16,10 +16,10 @@ class PostsController < ApplicationController
       #busqueda por scope
       #@posts = Post.search_by_title_or_content params[:query]
       ###busqueda por author asociada
-      @posts = Post.search_no_strict params[:query] 
+      @posts = Post.search_no_strict params[:query].page(params[:page]).per(3) 
       ############################################
     else
-      @posts = Post.all
+      @posts = Post.all.page(params[:page]).per(3)
     end
   end
 
