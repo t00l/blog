@@ -13,7 +13,7 @@ class PostsController < ApplicationController
       @posts << element.searchable 
       end
     else
-        @posts = Post.all
+        @posts = Post.all.page(params[:page])
     end
   end
 
