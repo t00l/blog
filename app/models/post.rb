@@ -1,6 +1,9 @@
 class Post < ActiveRecord::Base
 	
 	include PgSearch
+	
+	multisearchable against: [:titulo, :content]
+
 
 	validates :titulo, presence: true
 	validates :content, presence: true

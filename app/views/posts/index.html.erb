@@ -30,9 +30,19 @@
     </tbody>
   </table>
 
-<br>
 <% if (user_signed_in?) && (can? :create, Post)  %>
   <%= link_to 'New Post', new_post_path, class: "btn btn-success"  %>  
-<% end %>
+<% end %><br>
+
+<br>
+
+<form action="/" >
+  <b>Busqueda:</b><br>
+  <input type="text" name="query" class="form-control" placeholder="A buscar"><br>
+  <br>
+  <input type="submit" value="Submit" class="btn btn-success"><br>
+  <br>
+  </form>
+<br>
 
 </div>
