@@ -2,8 +2,17 @@ class Post < ActiveRecord::Base
 	
 	include PgSearch
 	
+	#buscarqueda multisearch
 	multisearchable against: [:titulo, :content]
+	#busqueda con scope, mas ajustada o costumize
+	pg_search_scope :search_by_title_or_content, against: [:titulo, :content]
+	pg_search_scope :search_by_title, against: [:titulo]
+	pg_search_scope :search_by_content, against: [:content]
 
+	#busqueda tabla asociada
+	pg_search_scope :search_by_author, associated_against: {
+    user: [:name]}
+    pg_search_scope :search_no_strict, against: [:titulo, :content], using: {tsearch: {prefix: :true}}
 
 	validates :titulo, presence: true
 	validates :content, presence: true
