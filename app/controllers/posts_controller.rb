@@ -6,14 +6,20 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
+    #@posts = []
     if params.key?(:query) && !params[:query].empty?
       #problematic_record.published?     # => false
-      @posts = []
-      PgSearch.multisearch(params[:query]).where(searchable_type: "Post").find_each do |element|
-      @posts << element.searchable 
-      end
+      #PgSearch.multisearch(params[:query]).where(searchable_type: "Post").find_each do |element|
+      #@posts << element.searchable 
+      #end
+      ############################################
+      #busqueda por scope
+      #@posts = Post.search_by_title_or_content params[:query]
+      ###busqueda por author asociada
+      @posts = Post.search_no_strict params[:query] 
+      ############################################
     else
-        @posts = Post.all
+      @posts = Post.all
     end
   end
 
