@@ -15,11 +15,15 @@ class CommentsController < ApplicationController
 
 		@comments = @post.comments.all
 		#ahora vamos a guardar el comentario en la bd
-		if @comment.save
-			redirect_to @post, notice: 'El comentario se guardo con exito' #
-		else
-			render 'posts/show'
-		end
+		respond_to do |format|
+      		if @comment.save
+		        format.html { redirect_to @post, notice: 'Comment was successfully created.' }
+		        format.js
+     		else
+		        format.html { render 'posts/show' }
+		        format.js
+		    end
+      	end
 	end
 
 	def destroy
