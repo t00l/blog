@@ -1,67 +1,67 @@
 <div class="container-fluid">
 
-<h1>Listing Posts</h1>
+  <h1>Listing Posts</h1>
 
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Avatar</th>
-        <th>Titulo</th>
-        <th>Content</th>
-        <th colspan="3">Actions</th>
-      </tr>
-    </thead>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Avatar</th>
+          <th>Titulo</th>
+          <th>Content</th>
+          <th colspan="3">Actions</th>
+        </tr>
+      </thead>
 
-    <tbody id="posts">
-        <%= render @posts %>
-    </tbody>
-  </table>
+      <tbody id="posts">
+          <%= render @posts %>
+      </tbody>
+    </table>
 
-<div id="paginator">
-  <p id="view-more">
-    <%= link_to 'Ver mas', url_for(page: @posts.current_page + 1)  %>
-  </p>
-  <%#= paginate @posts %>
-</div>
+  <div id="paginator">
+    <p id="view-more">
+      <%= link_to 'Ver mas', url_for(page: @posts.current_page + 1)  %>
+    </p>
+    <%#= paginate @posts %>
+  </div>
 
-<% if (user_signed_in?) && (can? :create, Post)  %>
-  <%= link_to 'New Post', new_post_path, class: "btn btn-success"  %>  
-<% end %><br>
+  <% if (user_signed_in?) && (can? :create, Post)  %>
+    <%= link_to 'New Post', new_post_path, class: "btn btn-success"  %>  
+  <% end %><br>
 
-<br>
-
-<form action="/" >
-  <b>Busquedas:</b><br>
-  <input type="text" name="query" class="form-control" placeholder="A buscar"><br>
   <br>
-  <input type="submit" value="Submit" class="btn btn-success"><br>
-  <br>
-  </form>
-<br>
 
-<script>
-  $(function() {
-    return $(window).scroll(function () {
-      var url;
-      url = $('#view-more a').attr('href');
-      if ($(window).scrollTop() > $(document).height() - $(window).height() - 50) {
-        $('#view-more a').attr('href', '');
-        return $.getScript(url);
-      }
+  <form action="/" >
+    <b>Busquedas:</b><br>
+    <input type="text" name="query" class="form-control" placeholder="A buscar"><br>
+    <br>
+    <input type="submit" value="Submit" class="btn btn-success"><br>
+    <br>
+    </form>
+  <br>
+
+  <script>
+    $(function() {
+      return $(window).scroll(function () {
+        var url;
+        url = $('#view-more a').attr('href');
+        if ($(window).scrollTop() > $(document).height() - $(window).height() - 50) {
+          $('#view-more a').attr('href', '');
+          return $.getScript(url);
+        }
+      });
     });
-  });
-</script>
+  </script>
 
 
-<script>
-  $('#query').keyup(function() {
-    $.ajax({
-      url: '/',
-      type: 'GET',
-      dataType: 'script',
-      data: {query: $(this).val()},
-    })
-  });
-</script>
+  <script>
+    $('#query').keyup(function() {
+      $.ajax({
+        url: '/',
+        type: 'GET',
+        dataType: 'script',
+        data: {query: $(this).val()},
+      })
+    });
+  </script>
 
 </div>
