@@ -44,14 +44,17 @@
           <%= render 'comments/form'%>
         <% end %>
 
-        <h2>Comentarios (<%= @comments.count %>)</h2>
+        <h2>Comentarios <span class="comments_count">(<%= @comments.count %>)</span></h2>
 
+        <div class="comments">
 
-        <% if @comments.any? %>
-          <%= render partial: 'comments/comment', collection: @comments %>
-        <% else %>
-          <p>Publicación sin comentarios</p>
-        <% end %>
+          <% if @comments.any? %>
+            <%= render partial: 'comments/comment', collection: @comments %>
+          <% else %>
+            <p>Publicación sin comentarios</p>
+          <% end %>
+
+        </div>
 
         <% if  can? :update, @post %>
           <%= link_to 'Edit', edit_post_path(@post) %>

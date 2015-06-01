@@ -1,1 +1,6 @@
-alert("El post ha sido creado con exito")
+$(".comments").prepend("<%= j render @comment %>");
+//j es de escape_javascript
+$(".comments_count").text("(<%= j @post.comments.length.to_s %>)");
+//
+$("#borrar").val('');
+

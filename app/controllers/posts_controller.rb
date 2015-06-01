@@ -16,11 +16,17 @@ class PostsController < ApplicationController
       #busqueda por scope
       #@posts = Post.search_by_title_or_content params[:query]
       ###busqueda por author asociada
-      @posts = Post.search_no_strict params[:query].page(params[:page]).per(3) 
+      @posts = Post.search_no_strict(params[:query]).page(params[:page]).per(10) 
       ############################################
     else
-      @posts = Post.all.page(params[:page]).per(3)
+      @posts = Post.all.page(params[:page]).per(10)
     end
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+    
   end
 
   # GET /posts/1
@@ -31,7 +37,7 @@ class PostsController < ApplicationController
     @comment = @post.comments.build
 
     #tenemos que mostrar todos los comentarios del post y pasarlos a la vista
-    @comments = @post.comments.all #muestra el arreglo de todos los comentarios
+    @comments = @post.comments.all.reverse #muestra el arreglo de todos los comentarios
 
   end
 
