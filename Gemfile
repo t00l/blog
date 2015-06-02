@@ -24,6 +24,10 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'pg_search'
 #paginacion
 gem 'kaminari'
+#faker 
+gem 'faker'
+
+
 
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
@@ -67,5 +71,7 @@ group :development, :test do
   gem 'better_errors'
   #dotenv para las variables de entorno.
   gem 'dotenv-rails'
+  #bullet n+1
+  gem 'bullet'
 end
 

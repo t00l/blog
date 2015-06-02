@@ -29,6 +29,16 @@ class PostsController < ApplicationController
     
   end
 
+  
+  def todo
+    #esta es mejor, con include, por que realiza menos consultar a la bd. Hay que saber cuando usar
+    #esta consulta, ya que puede colapsar la bd 
+    @users = User.eager_load(:posts, {posts: :comments}).all
+    
+    #este lo trae sobre los objbetos de la bd, en estecaso sobre los usuarios. LOs trea de a poco
+    #@users = User.eager_load(:posts, {posts: :comments}).find.each do |data|
+  end
+
   # GET /posts/1
   # GET /posts/1.json
   def show

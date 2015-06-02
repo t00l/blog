@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   
 devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
 
+  get 'posts/todo' => 'posts#todo'
+
   resources :posts do #recursos anidados
     resources :comments, only:[:create, :destroy] do#controlare
         member do

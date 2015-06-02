@@ -1,0 +1,14 @@
+<% @users.each do |user| %>
+	<p><%= user.name %> has <%= user.posts.size %> posts</p>
+		<% user.posts.each do |post|%>
+		<p>This post has <%= post.comments.size %> comments </p>
+		<p> <%= post.titulo %> </p>
+		<p><%= post.content %></p>
+			<% post.comments.each do |comment| %>
+				<p> <%= comment.comment  %> </p>
+			<% end %>
+		<% end %>
+<% end %>
+
+<!-- eager load en el controlador precargalos datos, por eso mejor es ocupar el length. EL size toma la decision si estan cargados o no (Size elige si es count o length) -->
+
