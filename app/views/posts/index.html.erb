@@ -2,12 +2,22 @@
 
   <h1>Listing Posts</h1>
 
+  <form action="/" >
+    <b>Busquedas:</b><br>
+    <input type="text" name="query" class="form-control" placeholder="A buscar"><br>
+    <br>
+    <input type="submit" value="Submit" class="btn btn-success"><br>
+    <br>
+    </form>
+  <br>
+
     <table class="table table-bordered">
       <thead>
         <tr>
-          <th>Avatar</th>
+          <th>Nombre</th>
           <th>Titulo</th>
           <th>Content</th>
+          <th>Votos del Post</th>
           <th colspan="3">Actions</th>
         </tr>
       </thead>
@@ -30,14 +40,7 @@
 
   <br>
 
-  <form action="/" >
-    <b>Busquedas:</b><br>
-    <input type="text" name="query" class="form-control" placeholder="A buscar"><br>
-    <br>
-    <input type="submit" value="Submit" class="btn btn-success"><br>
-    <br>
-    </form>
-  <br>
+
 
   <script>
     $(function() {

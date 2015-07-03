@@ -1,7 +1,16 @@
         <tr>
-          <td><%= image_tag(post.user.avatar.small_thumb.url)%></td>
+        <td> <%= post.user.name%> </td>
           <td><%= post.titulo %></td>
           <td><%= post.content %></td>
+          <td><%= post.votes.count %></td>
+          <td><% unless post.user_votes.include? current_user %>
+
+           <%= link_to '+1', upvote_post_path(post) %>
+                <% else %>
+            <%= link_to '+1', upvote_post_path(post) %>
+            <% end %>
+
+          </td>
           <td><%= link_to 'Show', post %></td>
           <% if can? :update, post %>
              <td><%= link_to 'Edit', edit_post_path(post) %></td>

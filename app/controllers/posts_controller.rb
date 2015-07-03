@@ -47,7 +47,7 @@ class PostsController < ApplicationController
     @comment = @post.comments.build
 
     #tenemos que mostrar todos los comentarios del post y pasarlos a la vista
-    @comments = @post.comments.all.reverse #muestra el arreglo de todos los comentarios
+    @comments = @post.comments.includes(:user).all.reverse #muestra el arreglo de todos los comentarios
 
   end
 
@@ -120,6 +120,8 @@ class PostsController < ApplicationController
       redirect_to @post, alert: 'No se pudo votar'
     end
   end
+
+   
 
   private
 
