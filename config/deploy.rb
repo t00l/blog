@@ -9,8 +9,8 @@ set :deploy_via, :copy
 set :user, 'deploy'
 
 set :deploy_to, '/home/deploy/apps/blog'
-set :linked_files, %w({config/database.yml})
-set :linked_dirs, %w({big log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system})
+set :linked_files, %w{config/database.yml}
+set :linked_dirs, %w{big log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
 namespace :deploy do
 	desc 'Restart application'
@@ -19,7 +19,6 @@ namespace :deploy do
 			execute :touch, release_path.join('tmp/restart.txt')  
 	end
 end
-
 	after :publishing, 'deploy:restart'
 	after :finishing, 'deploy:cleanup'
 end
